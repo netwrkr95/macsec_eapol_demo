@@ -1,10 +1,10 @@
 ## Using Ansible to Quickly Modify WAN MACsec Configurations in Cisco IOS-XE 
 
-This demonstration offers simplified Ansible playbooks to accelerate the demonstration of new enhancements for those customers running WAN MACsec in Cisco IOS-XE solutions.  The content included in this repo offers a vast amount of dynamically adding/modifying/deleting WAN MACsec functionality commands, including key-exchange transport, enabling MACsec on the interface, as well as modifying key-chain rollover timers.  While there are multiple capabilities available, the focus is specicially around the key initiation enhancements Cisco has in their WAN MACsec solution, specifically around EAPoL commands that enhance key exchange seamlessly over any form of public Ethernet transport provider [1] (add reference to MKA EAPoL)  
+This demonstration offers simplified Ansible playbooks to accelerate the demonstration of new enhancements for those customers running WAN MACsec in Cisco IOS-XE solutions.  The content included in this repo offers a vast amount of dynamically adding/modifying/deleting WAN MACsec functionality commands, including key-exchange transport, enabling MACsec on the interface, as well as modifying key-chain rollover timers.  While there are multiple capabilities available, the focus is specicially around the key initiation enhancements Cisco has in their WAN MACsec solution, specifically around EAPoL commands that enhance key exchange seamlessly over any form of public Ethernet transport provider. [1]
 
 ### What is WAN MACsec
 
-To gather a more in-depth understanding of WAN MACsec, how it benefits network designs, and key areas operators should be understanding, see key reference material below that will aid in understanding the vital concept for securing high speed data networks.
+To gather a more in-depth understanding of WAN MACsec, how it benefits network designs, and key areas operators should be understanding, see key reference material below [2] that will aid in understanding the vital concept for securing high speed data networks.
 
 
 ### Overview and Use Case
@@ -40,7 +40,8 @@ Ansible = version 2.6.12
 
 #### References
 
-[1] Cisco IOS-XE EAPoL Documentation: https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/macsec/configuration/xe-3s/macsec-xe-3s-book.html#task_1573E9C7150F4451981F493D0B7859CB 
+[1] Cisco IOS-XE EAPoL Documentation: https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/macsec/configuration/xe-3s/macsec-xe-3s-book.html#task_1573E9C7150F4451981F493D0B7859CB
+
 [2] WAN MACsec Overview - White Paper:  https://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Security/MACsec/WP-High-Speed-WAN-Encrypt-MACsec.pdf 
 
 
