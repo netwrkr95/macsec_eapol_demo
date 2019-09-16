@@ -1,0 +1,43 @@
+---
+
+- name: IOS-XE - WAN MACsec EAPoL Modification Playbook
+  hosts: routers
+  connection: local
+  gather_facts: no
+  #  I decided to enter MPLS VPN variables directly into the Playbook.  There are other options of course
+  
+  vars:
+    int_name: TenGigabitEthernet0/0/0
+    e_type_num: 876F
+    eapol_address: broadcast-address
+
+  tasks:
+  - name: Get Login credentials
+    include_vars: /Users/crhill/coding/ansible/ansible-projects/macsec_eapol_demo/access.yml
+
+  - name: Define Provider
+    set_fact:
+      provider:
+      #  This references my "access.yml' file for login credentials
+        host: "{{ inventory_hostname }}"
+        # host: "{{ device_ip }}"
+        username: "{{ access['username'] }}"
+        password: "{{ access['password'] }}"
+
+  - name: Apply "access-control" (should/must) Command to Interface
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - macsec access-control must-secure
+        #- macsec access-control should-secure
+      parents: ['interface {{ int_name }}']
+      match: exact
+
+  handlers:
+   - name: write config
+     ios_config:
+        provider: "{{ provider }}"
+        save_when: modified
+
+...

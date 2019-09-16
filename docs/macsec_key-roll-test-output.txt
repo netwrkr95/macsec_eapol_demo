@@ -1,0 +1,151 @@
+MACsec Re-key Capture
+- 4 keys
+- 3 rolls after #1 deployed
+- includes: key-chain / Output
+
+
+
+
+Key Chain:
+
+key chain key-roll-18 macsec
+ key 01
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789012
+   lifetime 17:45:00 Aug 28 2019 21:15:00 Aug 28 2019
+ key 02
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789011
+   lifetime 21:00:00 Aug 28 2019 22:15:00 Aug 28 2019
+ key 03
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789011
+   lifetime 22:00:00 Aug 28 2019 23:15:00 Aug 28 2019
+ key 04
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789013
+   lifetime 23:00:00 Aug 28 2019 infinite
+
+
+
+
+OUTPUT:
+
+
+#1 - deploy new key-chain - 17:45
+
+
+Aug 28 17:45:44.545: %MKA-5-CAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a CAK Rekey  for RxSCI 2c33.118c.4b00/0008, AuditSessionID , AuthMgr-Handle F5000002, Old CKN 03
+Aug 28 17:45:44.545: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b00/0000, AuditSessionID , CKN 01
+Aug 28 17:45:44.660: %SYS-5-CONFIG_I: Configured from console by cisco on vty3 (10.150.64.26)
+Aug 28 17:45:46.791: %MKA-6-SAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a SAK Rekey (current Latest AN/KN 3/4, Old AN/KN 2/3) for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 01
+Aug 28 17:45:46.791: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 01
+Aug 28 17:45:47.835: %MKA-5-CAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a CAK Rekey  for RxSCI 80e0.1d27.2107/000f, AuditSessionID , AuthMgr-Handle 4A000003, Old CKN 03
+Aug 28 17:45:47.835: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2107/0000, AuditSessionID , CKN 01
+Aug 28 17:45:47.857: %MACSEC-6-INSTALL_TX_SA: (TenGigabitEthernet0/0/0 TX SCI B0AA77413F000008 : vport 8 : an 0 : next_pn 0x1)
+
+Aug 28 17:45:47.858: %MKA-6-SAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 0/5, Old AN/KN 3/4) for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 01
+Aug 28 17:45:47.858: %MKA-5-SESSION_SECURED: (Te0/0/0 : 8) MKA Session was secured for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 01
+Aug 28 17:45:47.858: %MKA-6-CAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2100/0008, AuditSessionID , New CKN 01
+Aug 28 17:45:47.947: %SYS-5-CONFIG_I: Configured from console by cisco on vty3 (10.150.64.26)
+Aug 28 17:45:50.792: %MKA-6-SAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a SAK Rekey (current Latest AN/KN 3/4, Old AN/KN 2/3) for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 01
+Aug 28 17:45:50.792: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 01
+Aug 28 17:45:51.884: %MACSEC-6-INSTALL_TX_SA: (GigabitEthernet0/0/5 TX SCI B0AA77413F07000F : vport 15 : an 0 : next_pn 0x1)
+
+Aug 28 17:45:51.885: %MKA-6-SAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 0/5, Old AN/KN 3/4) for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 01
+Aug 28 17:45:51.885: %MKA-5-SESSION_SECURED: (Gi0/0/5 : 15) MKA Session was secured for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 01
+Aug 28 17:45:51.885: %MKA-6-CAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2107/000f, AuditSessionID , New CKN 01
+
+
+
+Roll - key-1 to key-2 - 21:00
+
+
+
+Aug 28 21:00:00.001: %MKA-5-CAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a CAK Rekey  for RxSCI 2c33.118c.4b07/000f, AuditSessionID , AuthMgr-Handle 4A000003, Old CKN 01
+Aug 28 21:00:00.001: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b07/0000, AuditSessionID , CKN 02
+Aug 28 21:00:00.001: %MKA-5-CAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a CAK Rekey  for RxSCI 2c33.118c.4b00/0008, AuditSessionID , AuthMgr-Handle F5000002, Old CKN 01
+Aug 28 21:00:00.001: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b00/0000, AuditSessionID , CKN 02
+Aug 28 21:00:27.697: %MKA-6-SAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a SAK Rekey (current Latest AN/KN 0/5, Old AN/KN 3/4) for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 02
+Aug 28 21:00:27.697: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 02
+Aug 28 21:00:27.697: %MKA-6-SAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a SAK Rekey (current Latest AN/KN 0/5, Old AN/KN 3/4) for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 02
+Aug 28 21:00:27.697: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 02
+Aug 28 21:00:28.589: %MACSEC-6-INSTALL_TX_SA: (TenGigabitEthernet0/0/0 TX SCI B0AA77413F000008 : vport 8 : an 1 : next_pn 0x1)
+
+Aug 28 21:00:28.589: %MKA-6-SAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 1/6, Old AN/KN 0/5) for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 02
+Aug 28 21:00:28.589: %MKA-5-SESSION_SECURED: (Te0/0/0 : 8) MKA Session was secured for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 02
+Aug 28 21:00:28.589: %MKA-6-CAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2100/0008, AuditSessionID , New CKN 02
+Aug 28 21:00:28.633: %MACSEC-6-INSTALL_TX_SA: (GigabitEthernet0/0/5 TX SCI B0AA77413F07000F : vport 15 : an 1 : next_pn 0x1)
+
+Aug 28 21:00:28.633: %MKA-6-SAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 1/6, Old AN/KN 0/5) for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 02
+Aug 28 21:00:28.633: %MKA-5-SESSION_SECURED: (Gi0/0/5 : 15) MKA Session was secured for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 02
+Aug 28 21:00:28.633: %MKA-6-CAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2107/000f, AuditSessionID , New CKN 02
+
+
+
+Roll - key-2 to key-3 - 22:00
+
+
+
+Aug 28 22:00:00.001: %MKA-5-CAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a CAK Rekey  for RxSCI 80e0.1d27.2107/000f, AuditSessionID , AuthMgr-Handle 4A000003, Old CKN 02
+Aug 28 22:00:00.001: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2107/0000, AuditSessionID , CKN 03
+Aug 28 22:00:00.001: %MKA-5-CAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a CAK Rekey  for RxSCI 80e0.1d27.2100/0008, AuditSessionID , AuthMgr-Handle F5000002, Old CKN 02
+Aug 28 22:00:00.001: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2100/0000, AuditSessionID , CKN 03
+Aug 28 22:00:26.051: %MKA-6-SAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a SAK Rekey (current Latest AN/KN 1/6, Old AN/KN 0/5) for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 03
+Aug 28 22:00:26.051: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 03
+Aug 28 22:00:26.052: %MKA-6-SAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a SAK Rekey (current Latest AN/KN 1/6, Old AN/KN 0/5) for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 03
+Aug 28 22:00:26.052: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 03
+Aug 28 22:00:27.475: %MACSEC-6-INSTALL_TX_SA: (TenGigabitEthernet0/0/0 TX SCI B0AA77413F000008 : vport 8 : an 2 : next_pn 0x1)
+
+Aug 28 22:00:27.475: %MKA-6-SAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 2/7, Old AN/KN 1/6) for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 03
+Aug 28 22:00:27.475: %MKA-5-SESSION_SECURED: (Te0/0/0 : 8) MKA Session was secured for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 03
+Aug 28 22:00:27.475: %MKA-6-CAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2100/0008, AuditSessionID , New CKN 03
+Aug 28 22:00:27.519: %MACSEC-6-INSTALL_TX_SA: (GigabitEthernet0/0/5 TX SCI B0AA77413F07000F : vport 15 : an 2 : next_pn 0x1)
+
+Aug 28 22:00:27.519: %MKA-6-SAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 2/7, Old AN/KN 1/6) for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 03
+Aug 28 22:00:27.519: %MKA-5-SESSION_SECURED: (Gi0/0/5 : 15) MKA Session was secured for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 03
+Aug 28 22:00:27.519: %MKA-6-CAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2107/000f, AuditSessionID , New CKN 03
+
+
+
+Roll - key-3 to key-4 - 23:00
+
+
+
+Aug 28 23:00:00.000: %MKA-5-CAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a CAK Rekey  for RxSCI 80e0.1d27.2107/000f, AuditSessionID , AuthMgr-Handle 4A000003, Old CKN 03
+Aug 28 23:00:00.000: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2107/0000, AuditSessionID , CKN 04
+Aug 28 23:00:00.001: %MKA-5-CAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a CAK Rekey  for RxSCI 80e0.1d27.2100/0008, AuditSessionID , AuthMgr-Handle F5000002, Old CKN 03
+Aug 28 23:00:00.001: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 80e0.1d27.2100/0000, AuditSessionID , CKN 04
+Aug 28 23:00:26.447: %MKA-6-SAK_REKEY: (Te0/0/0 : 8) MKA Session is beginning a SAK Rekey (current Latest AN/KN 2/7, Old AN/KN 1/6) for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 04
+Aug 28 23:00:26.447: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Te0/0/0 : 8) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b00/0008, AuditSessionID , CKN 04
+Aug 28 23:00:26.448: %MKA-6-SAK_REKEY: (Gi0/0/5 : 15) MKA Session is beginning a SAK Rekey (current Latest AN/KN 2/7, Old AN/KN 1/6) for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 04
+Aug 28 23:00:26.448: %MKA-4-MKA_MACSEC_CIPHER_MISMATCH: (Gi0/0/5 : 15) Lower strength MKA-cipher than macsec-cipher for RxSCI 2c33.118c.4b07/000f, AuditSessionID , CKN 04
+Aug 28 23:00:27.907: %MACSEC-6-INSTALL_TX_SA: (TenGigabitEthernet0/0/0 TX SCI B0AA77413F000008 : vport 8 : an 3 : next_pn 0x1)
+
+Aug 28 23:00:27.907: %MKA-6-SAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 3/8, Old AN/KN 2/7) for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 04
+Aug 28 23:00:27.907: %MKA-5-SESSION_SECURED: (Te0/0/0 : 8) MKA Session was secured for RxSCI 80e0.1d27.2100/0008, AuditSessionID , CKN 04
+Aug 28 23:00:27.907: %MKA-6-CAK_REKEY_SUCCESS: (Te0/0/0 : 8) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2100/0008, AuditSessionID , New CKN 04
+Aug 28 23:00:27.951: %MACSEC-6-INSTALL_TX_SA: (GigabitEthernet0/0/5 TX SCI B0AA77413F07000F : vport 15 : an 3 : next_pn 0x1)
+
+Aug 28 23:00:27.952: %MKA-6-SAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session successfully completed a SAK Rekey (new Latest AN/KN 3/8, Old AN/KN 2/7) for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 04
+Aug 28 23:00:27.952: %MKA-5-SESSION_SECURED: (Gi0/0/5 : 15) MKA Session was secured for RxSCI 80e0.1d27.2107/000f, AuditSessionID , CKN 04
+Aug 28 23:00:27.952: %MKA-6-CAK_REKEY_SUCCESS: (Gi0/0/5 : 15) MKA Session CAK rekey is successful for RxSCI 80e0.1d27.2107/000f, AuditSessionID , New CKN 04
+
+
+FINAL “show mkay sessions” output
+
+ASR-1000-A#sh mka sess
+
+Total MKA Sessions....... 2
+      Secured Sessions... 2
+      Pending Sessions... 0
+
+====================================================================================================
+Interface      Local-TxSCI         Policy-Name      Inherited         Key-Server
+Port-ID        Peer-RxSCI          MACsec-Peers     Status            CKN
+====================================================================================================
+Te0/0/0        b0aa.7741.3f00/0008 POLICY_1         NO                YES
+8              2c33.118c.4b00/0008 2                Secured           04
+
+Gi0/0/5        b0aa.7741.3f07/000f POLICY_1         NO                YES
+15             2c33.118c.4b07/000f 2                Secured           04

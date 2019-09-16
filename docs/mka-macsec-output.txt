@@ -1,0 +1,72 @@
+ASR-1000-A# sh mka sessions
+
+Total MKA Sessions....... 2
+      Secured Sessions... 2
+      Pending Sessions... 0
+
+====================================================================================================
+Interface      Local-TxSCI         Policy-Name      Inherited         Key-Server
+Port-ID        Peer-RxSCI          MACsec-Peers     Status            CKN
+====================================================================================================
+Te0/0/0        b0aa.7741.3f00/0008 POLICY_1         NO                YES
+8              2c33.118c.4b00/0008 2                Secured           04
+
+Gi0/0/5        b0aa.7741.3f07/000f POLICY_1         NO                YES
+15             2c33.118c.4b07/000f 2                Secured           04
+
+
+
+
+
+ASR-1000-A# sh mka sessions interface tenGigabitEthernet 0/0/0 detail
+
+MKA Detailed Status for MKA Session
+===================================
+Status: SECURED - Secured MKA Session with MACsec
+
+Local Tx-SCI............. b0aa.7741.3f00/0008
+Interface MAC Address.... b0aa.7741.3f00
+MKA Port Identifier...... 8
+Interface Name........... TenGigabitEthernet0/0/0
+Audit Session ID.........
+CAK Name (CKN)........... 04
+Member Identifier (MI)... 90E725FA9774328538B0C026
+Message Number (MN)...... 32105
+EAP Role................. NA
+Key Server............... YES
+MKA Cipher Suite......... AES-128-CMAC
+
+Latest SAK Status........ Rx & Tx
+Latest SAK AN............ 0
+Latest SAK KI (KN)....... 90E725FA9774328538B0C02600000009 (9)
+Old SAK Status........... No Rx, No Tx
+Old SAK AN............... 3
+Old SAK KI (KN).......... RETIRED (8)
+
+SAK Transmit Wait Time... 0s (Not waiting for any peers to respond)
+SAK Retire Time.......... 0s (No Old SAK to retire)
+
+MKA Policy Name.......... POLICY_1
+Key Server Priority...... 0
+Delay Protection......... NO
+Delay Protection Timer.......... 0s (Not enabled)
+
+Confidentiality Offset... 0
+Algorithm Agility........ 80C201
+SAK Rekey On Live Peer Loss........ NO
+SAK Cipher Suite......... 0080C20001000002 (GCM-AES-256)
+MACsec Capability........ 3 (MACsec Integrity, Confidentiality, & Offset)
+MACsec Desired........... YES
+
+# of MACsec Capable Live Peers............ 2
+# of MACsec Capable Live Peers Responded.. 2
+
+Live Peers List:
+  MI                        MN          Rx-SCI (Peer)        KS Priority
+  ----------------------------------------------------------------------
+  1A5684EFF77316666D774FC9  32121       80e0.1d27.2100/0008   10
+  67BFBFED5F8CA88F02633455  32101       2c33.118c.4b00/0008   20
+
+Potential Peers List:
+  MI                        MN          Rx-SCI (Peer)        KS Priority
+  ----------------------------------------------------------------------

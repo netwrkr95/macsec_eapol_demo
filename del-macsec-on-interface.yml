@@ -1,0 +1,55 @@
+---
+
+- name: IOS-XE - WAN MACsec - Delete MACsec from Interface Playbook
+  hosts: routers
+  connection: local
+  gather_facts: no
+  #  I decided to enter MPLS VPN variables directly into the Playbook.  There are other options of course
+  #  These 5 variables are all that is needed to get a basic VRF enabled, add the RD and RT,
+  #  apply the VRF to an interface of choice, and then add the address-family to BGP (could be other protocol)
+  vars:
+    int_ten_name: TenGigabitEthernet0/0/0
+    int_gig_name: GigabitEthernet0/0/5
+    # policy_name: KEY_1
+    # policy_name: key-roll-3
+    
+
+  tasks:
+  - name: Get Login credentials
+    include_vars: /Users/crhill/coding/ansible/ansible-projects/macsec_eapol_demo/access.yml
+
+  - name: Define Provider
+    set_fact:
+      provider:
+      #  This references my "access.yml' file for login credentials
+        host: "{{ inventory_hostname }}"
+        username: "{{ access['username'] }}"
+        password: "{{ access['password'] }}"
+
+#  I used variables for all of the needed commands, offering flexibility for the operator
+
+  - name: DELETE "macsec" from 10 Gig Interface
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - no macsec
+      parents: ['interface {{ int_ten_name }}']
+      match: exact
+
+  - name: DELETE "macsec" from 1 Gig Interface
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - no macsec
+      parents: ['interface {{ int_gig_name }}']
+      match: exact
+
+  handlers:
+   - name: write config
+     ios_config:
+        provider: "{{ provider }}"
+        save_when: modified
+
+...

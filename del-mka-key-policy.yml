@@ -1,0 +1,40 @@
+---
+
+- name: IOS-XE - WAN MACsec - Delete MKA Key Chain
+  hosts: routers
+  connection: local
+  gather_facts: no
+  #  I decided to enter MPLS VPN variables directly into the Playbook.  There are other options of course
+  vars:
+    policy_name: TESTING
+    
+  tasks:
+  - name: Get Login credentials
+    include_vars: /Users/crhill/coding/ansible/ansible-projects/macsec_eapol_demo/access.yml
+
+  - name: Define Provider
+    set_fact:
+      provider:
+      #  This references my "access.yml' file for login credentials
+        host: "{{ inventory_hostname }}"
+        # host: "{{ device_ip }}"
+        username: "{{ access['username'] }}"
+        password: "{{ access['password'] }}"
+
+#  I used variables for all of the needed commands, offering flexibility for the operator
+
+  - name: Delete MKA Key Chain Policy (Global)
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - no key chain {{ policy_name }} macsec
+      match: exact
+
+  handlers:
+   - name: write config
+     ios_config:
+        provider: "{{ provider }}"
+        save_when: modified
+
+...

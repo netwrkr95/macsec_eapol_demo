@@ -1,0 +1,64 @@
+---
+
+- name: IOS-XE - WAN MACsec EAPoL Modification Playbook
+  hosts: routers
+  connection: local
+  gather_facts: no
+  #  I decided to enter MPLS VPN variables directly into the Playbook.  There are other options of course
+
+  vars:
+    int_ten_name: TenGigabitEthernet0/0/0
+    int_gig_name: GigabitEthernet0/0/5
+    e_type_num: 876F
+    eapol_address: broadcast-address
+
+  tasks:
+  - name: Get Login credentials
+    include_vars: /Users/crhill/coding/ansible/ansible-projects/macsec_eapol_demo/access.yml
+
+  - name: Define Provider
+    set_fact:
+      provider:
+      #  This references my "access.yml' file for login credentials
+        host: "{{ inventory_hostname }}"
+        username: "{{ access['username'] }}"
+        password: "{{ access['password'] }}"
+
+#  I used variables for all of the needed commands, offering flexibility for the operator
+
+  - name: DELETE the MACsec EAPoL Options from Interfaces
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - no eapol eth-type {{ e_type_num }}
+        - no eapol destination-address {{ eapol_address }}
+      parents: ['interface {{ int_ten_name }}']
+      match: exact
+
+   - name: DELETE the MACsec EAPoL Options from Interfaces
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - no eapol eth-type {{ e_type_num }}
+        - no eapol destination-address {{ eapol_address }}
+      parents: ['interface {{ int_gig_name }}']
+      match: exact
+
+  #- name: Clear MKA Sessions
+  #  ios_command:
+  #    provider: "{{ provider }}"
+  #    commands:
+  #      - command: 'clear mka sessions'
+  #        prompt: 'Are you sure you want to do this? [yes/no]:'
+  #        answer: 'y'
+  #    connection: network_cli
+
+  handlers:
+   - name: write config
+     ios_config:
+        provider: "{{ provider }}"
+        save_when: modified
+
+...

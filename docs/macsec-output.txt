@@ -1,0 +1,85 @@
+ASR-1000-A#sh macsec hw detail
+
+ MACsec Capable Interface         RxSA Inuse
+----------------------------------------------
+ TenGigabitEthernet0/0/0       :        2
+ GigabitEthernet0/0/5          :        2
+
+
+Other Debug Statistics
+Interface TenGigabitEthernet0/0/0 HMAC:
+RxOctets     1425683690  RxUcastPkts  3727662088  RxMcastPkts  4170991594
+RxBcastPkts  3841602794  RxDiscards   2499425514  RxErrors      134249224
+TxOctets      276325130  TxUcastPkts  2157791210  TxMcastPkts  2499425514
+TxBcastPkts  3543898888  TxErrors     3929260992
+LMAC:
+RxOctets      150667804  RxUcastPkts  2552549878  RxMcastPkts  3134653427
+RxBcastPkts    16777216  RxDiscards   1560032490  RxErrors     2499425514
+TxOctets      917417224  TxUcastPkts  3929254336  TxMcastPkts           9
+TxBcastPkts  3929340644  TxErrors     3929341020
+
+Interface GigabitEthernet0/0/5 HMAC:
+RxOctets     1425683690  RxUcastPkts  3727662088  RxMcastPkts  2426292202
+RxBcastPkts  3841602794  RxDiscards   2499425514  RxErrors      134249224
+TxOctets      276325130  TxUcastPkts  4170991594  TxMcastPkts  2499425514
+TxBcastPkts  3543898888  TxErrors     3936960192
+LMAC:
+RxOctets      150667804  RxUcastPkts  2552549878  RxMcastPkts  3134653427
+RxBcastPkts    16777216  RxDiscards   1560032490  RxErrors     2499425514
+TxOctets      917417224  TxUcastPkts  3929254336  TxMcastPkts           9
+TxBcastPkts  3929340644  TxErrors     3929341020
+
+
+
+
+ASR-1000-A#sh macsec statistics interface tenGigabitEthernet 0/0/0
+MACsec Statistics for TenGigabitEthernet0/0/0
+ SecY Counters
+  Ingress Untag Pkts:       0
+  Ingress No Tag Pkts:      129455
+  Ingress Bad Tag Pkts:     0
+  Ingress Unknown SCI Pkts: 0
+  Ingress No SCI Pkts:      378974
+  Ingress Overrun Pkts:     0
+  Ingress Validated Octets: 0
+  Ingress Decrypted Octets: 1905053565208
+  Egress Untag Pkts:        0
+  Egress Too Long Pkts:     0
+  Egress Protected Octets:  0
+  Egress Encrypted Octets:  1944253460038
+
+ Controlled Port Counters
+  IF In Octets:             56472
+  IF In Packets:            51104
+  IF In Discard:            63919
+  IF In Errors:             0
+  IF Out Octets:            18258
+  IF Out Packets:           64705
+  IF Out Errors:            0
+
+ Transmit SC Counters (SCI: B0AA77413F000008)
+  Out Pkts Protected:       0
+  Out Pkts Encrypted:       4260688895
+ Transmit SA Counters (AN 0)
+  Out Pkts Protected:       0
+  Out Pkts Encrypted:       961805505
+
+ Receive SA Counters (SCI: 2C33118C4B000008  AN 0)
+  In Pkts Unchecked:        0
+  In Pkts Delayed:          0
+  In Pkts OK:               960263708
+  In Pkts Invalid:          0
+  In Pkts Not Valid:        0
+  In Pkts Not using SA:     0
+  In Pkts Unused SA:        0
+  In Pkts Late:             0
+
+ Receive SA Counters (SCI: 80E01D2721000008  AN 0)
+  In Pkts Unchecked:        0
+  In Pkts Delayed:          0
+  In Pkts OK:               20868
+  In Pkts Invalid:          0
+  In Pkts Not Valid:        0
+  In Pkts Not using SA:     0
+  In Pkts Unused SA:        0
+  In Pkts Late:             0

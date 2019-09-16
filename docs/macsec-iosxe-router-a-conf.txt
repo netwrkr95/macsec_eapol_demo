@@ -1,0 +1,59 @@
+!
+hostname ASR-1000-A
+
+## MACsec Key Chain 
+
+key chain key-roll-18 macsec
+ key 01
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789012
+   lifetime 17:45:00 Aug 28 2019 21:15:00 Aug 28 2019
+ key 02
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789011
+   lifetime 21:00:00 Aug 28 2019 22:15:00 Aug 28 2019
+ key 03
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789011
+   lifetime 22:00:00 Aug 28 2019 23:15:00 Aug 28 2019
+ key 04
+   cryptographic-algorithm aes-128-cmac
+  key-string 12345678901234567890123456789013
+   lifetime 23:00:00 Aug 28 2019 infinite
+!
+
+##  MACsec Policy
+!
+mka policy POLICY_1
+ macsec-cipher-suite gcm-aes-256
+
+## MACsec Enabled Interface
+!
+interface TenGigabitEthernet0/0/0
+ description MACsec Trunk to PCF and Iron Mountain
+ mtu 9100
+ ip address 10.15.0.1 255.255.255.0
+ ip mtu 9068
+ load-interval 30
+ carrier-delay msec 0
+ eapol destination-address broadcast-address
+ eapol eth-type 876F
+ mka policy POLICY_1
+ mka pre-shared-key key-chain key-roll-18
+ macsec
+ bfd interval 2000 min_rx 2000 multiplier 3
+!
+interface GigabitEthernet0/0/5
+ mtu 9100
+ ip address 10.17.0.1 255.255.255.0
+ ip mtu 9068
+ load-interval 30
+ delay 100
+ negotiation auto
+ eapol destination-address broadcast-address
+ eapol eth-type 876F
+ mka policy POLICY_1
+ mka pre-shared-key key-chain key-roll-18
+ macsec
+ bfd interval 2000 min_rx 2000 multiplier 3
+!
