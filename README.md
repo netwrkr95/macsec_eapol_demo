@@ -11,7 +11,7 @@ To gather a more in-depth understanding of WAN MACsec, how it benefits network d
 
 The purpose of this demonstration is to leverage Ansible to automate the enabling of certain WAN MACsec commands in IOS-XE to show a "before" and "after" affect of key features and capabilities of the Cisco IOS-XE solution.  The original purpose of the demo is demonstrating the before/after of enabling/disabling certain EAPoL commands that allow MACsec to run over public Ethernet Metro providers, allowing mandatory key-exchange processes for MACsec, before any traffic can be transfered between two or more end-points (routers).  In this demonstration, the operator can quickly enable these commands and view connectivity before/after, via an Ansible playbook.  Prior to these EAPoL enhancements and before these commands were introduced, end-points running MACsec over public providers and certain layer-2 switching elements, were not able to set up the necessary connections using the MACsec Key Agreement (MKA) protocol.  These playbooks allow the operator to quickly enable (or delete) the necessary commands (posted below in the demonstation example) to enable this EAPoL enhancements.  
 
-#### vManage Policy Example
+#### WAN MACsec EAPoL Command Example
 
 Below is an example of the two primary enhancement commands to the EAPoL key exchange transport:
 
