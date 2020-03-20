@@ -6,11 +6,11 @@
   gather_facts: no
   #  I decided to enter MPLS VPN variables directly into the Playbook.  There are other options of course
   vars:
-    policy_name: TESTING
+    policy_name: key-roll-17
     
   tasks:
   - name: Get Login credentials
-    include_vars: /Users/crhill/coding/ansible/ansible-projects/macsec_eapol_demo/access.yml
+    include_vars: ~/access.yml
 
   - name: Define Provider
     set_fact:
