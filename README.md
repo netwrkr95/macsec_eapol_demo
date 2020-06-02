@@ -44,6 +44,8 @@ Ansible = version 2.6.12
 
 [2] WAN MACsec Overview - White Paper:  https://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Security/MACsec/WP-High-Speed-WAN-Encrypt-MACsec.pdf 
 
+Note: There are additional MACsec configuration examples in the 'Docs' section of this repo.
+
 
 
 

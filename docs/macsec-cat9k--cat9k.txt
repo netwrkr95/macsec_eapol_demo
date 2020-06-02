@@ -1,0 +1,79 @@
+!Cat 9500-1
+!
+!
+key chain KEY_1 macsec
+ key 01
+   cryptographic-algorithm aes-256-cmac
+  key-string 1234567890123456789012345678901212345678901234567890123456789012
+   lifetime 00:00:00 Jan 1 2015 infinite
+!
+!
+mka policy POLICY_1
+ macsec-cipher-suite gcm-aes-256
+!
+interface TenGigabitEthernet1/0/8
+ description MACsec Link to Cat 9300 (over PW)
+ no switchport
+ mtu 9100
+ ip address 10.10.10.1 255.255.255.0
+ ip mtu 9068
+ macsec network-link
+ authentication linksec policy must-secure
+ mka policy POLICY_1
+ mka pre-shared-key key-chain KEY_1
+end
+
+
+
+C9500-12Q#sh mka sessions interface tenGigabitEthernet 1/0/8
+
+Summary of All Currently Active MKA Sessions on Interface TenGigabitEthernet1/0/8...
+
+====================================================================================================
+Interface      Local-TxSCI         Policy-Name      Inherited         Key-Server
+Port-ID        Peer-RxSCI          MACsec-Peers     Status            CKN
+====================================================================================================
+Te1/0/8        00b6.7036.f2e7/0047 POLICY_1         NO                YES
+71             f87b.2053.f4f4/003d 1                Secured           01
+
+
+
+———
+
+! Cat9500-2
+!
+!
+key chain KEY_1 macsec
+ key 01
+   cryptographic-algorithm aes-256-cmac
+  key-string 1234567890123456789012345678901212345678901234567890123456789012
+   lifetime 00:00:00 Jan 1 2015 infinite
+!
+!
+mka policy POLICY_1
+ macsec-cipher-suite gcm-aes-256
+!
+interface TenGigabitEthernet1/0/13
+ description MACsec Link to Cat 9500-12Q (over PW)
+ no switchport
+ mtu 9100
+ ip address 10.10.10.2 255.255.255.0
+ ip mtu 9068
+ macsec network-link
+ mka policy POLICY_1
+ mka pre-shared-key key-chain KEY_1
+end
+
+
+
+
+C9300-Site203-A#sh mka sessions interface tenGigabitEthernet 1/0/13
+
+Summary of All Currently Active MKA Sessions on Interface TenGigabitEthernet1/0/13...
+
+====================================================================================================
+Interface      Local-TxSCI         Policy-Name      Inherited         Key-Server
+Port-ID        Peer-RxSCI          MACsec-Peers     Status            CKN
+====================================================================================================
+Te1/0/13       f87b.2053.f4f4/003d POLICY_1         NO                NO
+61             00b6.7036.f2e7/0047 1                Secured           01
